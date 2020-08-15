@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- Before, After Returning, After Throwing, After, Around 
+		5개의 어드바이스가 존재하며 동작 시점에 따라 설정한다.  -->
+		
+		
+	<!-- 로그 클래스 빈 등록 -->		
+	<bean id="log" class="com.springbook.biz.common.Log" />
+	
+	<!-- AOP 설정 -->
+	<aop:config>
+		<!-- AOP 적용할 위치 설정 -->
+		<aop:pointcut expression="execution(* com.springbook.biz..*Impl.*(..))" id="allPointcut"/>
+		
+		<!-- 어드바이스 및 실행할 메서드 설정 -->
+		<aop:aspect ref="log">
+			<aop:around method="timeLog" pointcut-ref="allPointcut"/>
+			<aop:after-throwing method="exceptionLog" pointcut="allPointcut" throwing="exceptObj"/>
+		</aop:aspect>
+	</aop:config>
+</beans>

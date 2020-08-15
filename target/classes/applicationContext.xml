@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- com.springbook.biz.board.* 빈 등록 -->
+	<import resource="context-classBoard.xml" />
+	
+	<!-- com.springbook.biz.user.* 빈 등록 -->
+	<import resource="context-classUser.xml" />
+	
+	<!-- AOP 로그 -->
+	<import resource="context-log.xml" />
+
+	<!-- 트랜잭션 -->
+	<import resource="context-transaction.xml"/>
+</beans>
